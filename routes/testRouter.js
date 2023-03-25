@@ -3,8 +3,11 @@ const router = new Router();
 const testController = require('../controllers/testController');
 
 router.post('/question', testController.createQuestion);
-router.get('/getTest', testController.getTest);
+router.post('/createTest', testController.createTest);
 router.post('/saveResult', testController.saveResult);
-router.post('/read', testController.readFilesHandler);
+router.post('/readFile', testController.readFilesHandler);
+router.get('/getSubjectList', testController.getSubjectList);
+router.get('/getQuestionCount', testController.getQuestionCount);
+router.get('/getTest', testController.getTest);
 
 module.exports = router;

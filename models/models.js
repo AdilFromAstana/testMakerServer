@@ -1,14 +1,6 @@
 const sequelize = require('../db');
 const { DataTypes } = require('sequelize');
 
-const Device = sequelize.define('device', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, unique: true, allowNull: false },
-    price: { type: DataTypes.INTEGER, allowNull: false },
-    rating: { type: DataTypes.INTEGER, defaultValue: 0 },
-    img: { type: DataTypes.STRING, allowNull: false },
-});
-
 const Subject = sequelize.define('subject', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     subjectText: { type: DataTypes.STRING, allowNull: false },
@@ -39,6 +31,12 @@ const Result = sequelize.define('result', {
     resultInPercent: { type: DataTypes.FLOAT, allowNull: false },
 });
 
+const User = sequelize.define('user', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    username: { type: DataTypes.STRING, allowNull: false },
+    password: { type: DataTypes.STRING, allowNull: false },
+});
+
 Question.hasMany(Answer, { as: 'variants' });
 Answer.belongsTo(Question, {
     foreignKey: {
@@ -50,10 +48,10 @@ Result.hasOne(Test);
 Test.belongsTo(Result);
 
 module.exports = {
-    Device,
     Answer,
     Subject,
     Question,
     Test,
     Result,
+    User,
 };
